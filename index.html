@@ -44,7 +44,7 @@
 ### 虎科大機械設計工程系
 
 <small>
-Created by [KMOLab](http://chiamingyen.github.io/kmolab/blog/)
+Created by [40423224](https://40423224.github.io/2017springcd_hw/blog/)
 </small>
 
 [協同產品設計實習課程網誌](blog/index.html)
@@ -57,84 +57,52 @@ Created by [KMOLab](http://chiamingyen.github.io/kmolab/blog/)
 						
 <section data-markdown>
     <script type="text/template">
-# 投影片快捷鍵
+#week1筆記
 
-* 利用箭頭上下前後換頁
-* 按 f 鍵進入全螢幕模式 (full screen)
-* 按 s 鍵可以顯示投影片筆記 (show)
-* 按 o 鍵可以切換單張或全域檢視 (overview)
-* 按 b 或 . 鍵可以切換螢幕黑屏 (black)
-* 按 Esc 可以退出全螢幕或全域檢視 (Escape)
+* 認識Blender 3dstudio maya
+* 了解stunnel使用 http的proxy
+* stunnel>config>stunnel.conf\
+* ;(分號)=註解
+* ipconfig /all 查詢ip
+* 修改ip https://192.168.1.24/2017springvcp_hw/index
+* 利用vrep配合Scite完成做動模擬
+
 
     </script>
 </section>
-
-
-						
-<section>
-<section data-markdown>
-    <script type="text/template">
-<!-- 請注意, @others 不可以內縮 -->
-# 數學符號與方程式
-
-Inline math equations go in like so: $\omega = d\phi / dt$. Display
-math should get its own line and be put in in double-dollarsigns:
-
-$$I = \int \rho R^{2} dV$$
-    </script>
-</section>
-
 
 
 						
 <section data-markdown>
     <script type="text/template">
-<!-- 請注意, @others 不可以內縮 -->
-## 利用 Markdown 寫投影片
-以下利用 Markdown 格式展示 Python 程式碼:
-```
-# use threading and subprocess to threading the make process
-import os
-import subprocess
-import threading
+#week2
 
-def domake():
-    
-    path = "../exposed/api/exposed"
-    ubuntu = "../Ubuntu"
-    
-    # create obj path
-    
-    if not os.path.exists(path+"/../obj"):
-        os.makedirs(path+"/../obj")
-    
-    subprocess.call(["make", "clean"], cwd=path)
-    subprocess.call("make", cwd=path)
-    subprocess.call(["cp", "{libslvs.so, _slvs.so, slvs.py}", ubuntu], cwd=path)
-    subprocess.call(["python3", "circle_ex.py"], cwd=path+"/"+ubuntu)
-    
-make = threading.Thread(target=domake)
-make.start()
-```
+* 使用ethercalc製作簡易的分組表格
+* 認識cp950(大五碼)
+* 使用py建立分組程序，並且挑出未被分類的學生
+* 製作簡易連桿組
+* 了解vrep起始抓點，在做stl檔的時候原點需跟物件拉開一定距離
+
+
     </script>
 </section>
-
 
 
 						
 <section data-markdown>
     <script type="text/template">
-## 使用 iframe 導入影片
+#week3
 
-### 導入影片 template
+* 從 https://mde2al.kmol.info 進入新區域的wiki檢視每周進度
+* 了解Altair的soildthinking
+* 認識Altair的特色，其中包括檢測受力.受熱.流力.最小化資源利用.較* 為人性的快捷列
+* 更改start的fossil路徑並且建立自己的近端fossil帳號密碼
 
-<iframe src="https://player.vimeo.com/video/183950627" width="640" height="492" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
     </script>
 </section>
 
 
 						
-</section>
 </div>
 
 </div>

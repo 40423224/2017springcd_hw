@@ -9,10 +9,7 @@
 <preferences/>
 <find_panel_settings/>
 <vnodes>
-<v t="yen.20170108171605.1" a="E"><vh>@settings</vh>
-<v t="yen.20170108171605.2"><vh>@data qt-gui-plugin-style-sheet</vh></v>
-<v t="yen.20170108171605.3"><vh>@string initial_split_orientation = horizontal</vh></v>
-</v>
+<v t="yen.20170108171605.1"><vh>@settings</vh></v>
 <v t="yen.20170108171622.1"><vh>有關 2017springcd</vh></v>
 <v t="yen.20170108171733.1" a="E"><vh>@path ../</vh>
 <v t="yen.20170108171733.2"><vh>@button pelican-blog</vh></v>
@@ -27,28 +24,23 @@
 <v t="yen.20170215103332.1"><vh>@edit base.html</vh></v>
 </v>
 </v>
-<v t="yen.20170120110024.1"><vh>@clean index.html</vh>
+<v t="yen.20170120110024.1" a="E"><vh>@clean index.html</vh>
 <v t="yen.20170120110024.2" a="E"><vh>html</vh>
 <v t="yen.20170120110024.3"><vh>head</vh></v>
 <v t="yen.20170120110024.4" a="E"><vh>body</vh>
 <v t="yen.20170120110024.5" a="E"><vh>reveal div</vh>
-<v t="yen.20170120110024.6" a="E"><vh>slides div</vh>
-<v t="yen.20170120110024.7" a="E"><vh>封面投影片</vh>
-<v t="yen.20170120110024.8"><vh>封面投影片內容</vh></v>
+<v t="leo.20170312160138.1" a="E"><vh>slides div</vh>
+<v t="leo.20170312160138.2" a="E"><vh>封面投影片</vh>
+<v t="leo.20170312160138.3"><vh>封面投影片內容</vh></v>
 </v>
-<v t="yen.20170120110024.9" a="E"><vh>快捷鍵</vh>
-<v t="yen.20170120110024.10"><vh>投影片快捷鍵</vh></v>
+<v t="leo.20170312160138.4" a="E"><vh>封面投影片</vh>
+<v t="leo.20170312160138.5"><vh>封面投影片內容</vh></v>
 </v>
-<v t="yen.20170120110024.11"><vh>各式內容引用範例</vh>
-<v t="yen.20170120110024.12" a="E"><vh>導入數學符號與方程式</vh>
-<v t="yen.20170120110024.13"><vh>LaTeX 格式方程式</vh></v>
+<v t="leo.20170312160138.6" a="E"><vh>封面投影片</vh>
+<v t="leo.20170312160138.7"><vh>封面投影片內容</vh></v>
 </v>
-<v t="yen.20170120110024.14" a="E"><vh>導入縮排程式碼</vh>
-<v t="yen.20170120110024.15"><vh>引用程式碼</vh></v>
-</v>
-<v t="yen.20170120110024.16" a="E"><vh>導入影片</vh>
-<v t="yen.20170120110024.17"><vh>iframe 導入影片</vh></v>
-</v>
+<v t="leo.20170312160138.8" a="E"><vh>封面投影片</vh>
+<v t="leo.20170312160138.9"><vh>封面投影片內容</vh></v>
 </v>
 </v>
 </v>
@@ -56,14 +48,9 @@
 </v>
 </v>
 <v t="yen.20170108171733.71" a="E"><vh>@path content</vh>
-<v t="yen.20170123225841.1"><vh>@edit 20170108.md</vh></v>
-<v t="yen.20170207091131.1" a="E"><vh>@clean 20170207.md</vh>
-<v t="yen.20170207091131.2"><vh>ex1 - for 迴圈</vh></v>
-<v t="yen.20170207091131.3"><vh>ex2 - input 與單位換算</vh></v>
-<v t="yen.20170207091131.4"><vh>filereader</vh></v>
-</v>
-<v t="leo.20170312145138.1"><vh>@edit 20170222.md</vh></v>
-<v t="leo.20170312151737.1"><vh>@edit 20170222.md</vh></v>
+<v t="leo.20170312160338.1"><vh>@edit 20170222.md</vh></v>
+<v t="leo.20170312160330.1"><vh>@edit 20170301.md</vh></v>
+<v t="leo.20170312160310.1"><vh>@edit 20170308.md</vh></v>
 <v t="yen.20170108171733.81"><vh>@path pages</vh>
 <v t="yen.20170108171733.82"><vh>@edit pages_1.md</vh></v>
 </v>
@@ -92,82 +79,91 @@
 <v t="yen.20170209024032.1"><vh>reference</vh></v>
 </vnodes>
 <tnodes>
+<t tx="leo.20170312160138.1">&lt;!-- Any section element inside of this container is displayed as a slide --&gt;
+&lt;div class="slides"&gt;
+@others
+&lt;/div&gt;
+
+</t>
+<t tx="leo.20170312160138.2">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20170312160138.3">## 2017Spring 協同產品設計實習
+
+### 虎科大機械設計工程系
+
+&lt;small&gt;
+Created by [40423224](https://40423224.github.io/2017springcd_hw/blog/)
+&lt;/small&gt;
+
+[協同產品設計實習課程網誌](blog/index.html)
+
+
+</t>
+<t tx="leo.20170312160138.4">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20170312160138.5">#week1筆記
+
+* 認識Blender 3dstudio maya
+* 了解stunnel使用 http的proxy
+* stunnel&gt;config&gt;stunnel.conf\
+* ;(分號)=註解
+* ipconfig /all 查詢ip
+* 修改ip https://192.168.1.24/2017springvcp_hw/index
+* 利用vrep配合Scite完成做動模擬
+
+
+</t>
+<t tx="leo.20170312160138.6">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20170312160138.7">#week2
+
+* 使用ethercalc製作簡易的分組表格
+* 認識cp950(大五碼)
+* 使用py建立分組程序，並且挑出未被分類的學生
+* 製作簡易連桿組
+* 了解vrep起始抓點，在做stl檔的時候原點需跟物件拉開一定距離
+
+
+</t>
+<t tx="leo.20170312160138.8">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20170312160138.9">#week3
+
+* 從 https://mde2al.kmol.info 進入新區域的wiki檢視每周進度
+* 了解Altair的soildthinking
+* 認識Altair的特色，其中包括檢測受力.受熱.流力.最小化資源利用.較* 為人性的快捷列
+* 更改start的fossil路徑並且建立自己的近端fossil帳號密碼
+
+</t>
 <t tx="yen.20170108171605.1"></t>
-<t tx="yen.20170108171605.2">QTreeWidget {
-    /* These apply to the selected item, but not to editing items.*/
-    background-color: #ffffec; /* Leo's traditional tree color */
-    selection-color: black; /* was white */
-    selection-background-color: lightgrey;
-    /* font-family: SansSerif; */
-    /*font-family: DejaVu Sans Mono;*/
-    font-family:YaHei Mono;
-    /* 標題字型大小設定 */
-    font-size: 20px;
-    font-weight: normal; /* normal,bold,100,..,900 */
-    font-style: normal; /* normal, italic,oblique */
- }
-
-/* Headline edit widgets */
-QTreeWidget QLineEdit {
-    background-color: cornsilk;
-    selection-color: white;
-    selection-background-color: blue;
-    /*font-family: DejaVu Sans Mono;*/    
-    font-family:YaHei Mono;
-    /* 沒有特別對應字型大小 */
-    font-size: 20px;
-    font-weight: normal; /* normal,bold,100,..,900 */
-    font-style: normal; /* normal, italic,oblique */
-}
-
-/* The log panes */
-QTextEdit {
-    background-color: #f2fdff;
-    selection-color: red;
-    selection-background-color: blue;
-    /* font-family: Courier New; */
-    font-family:YaHei Mono;
-    /* log font 大小 */
-    font-size: 20px;
-    font-weight: normal; /* normal,bold,100,..,900 */
-    font-style: normal; /* normal, italic,oblique */
-}
-
-/* The body pane */
-QTextEdit#richTextEdit {
-    background-color: #fdf5f5; /* A kind of pink. */
-    selection-color: white;
-    selection-background-color: red;
-    /*font-family: DejaVu Sans Mono;*/
-    /* font-family: Courier New; */
-    font-family:YaHei Mono;
-    /* 內文字型大小 */
-    font-size: 20px;
-    font-weight: normal; /* normal,bold,100,..,900 */
-    font-style: normal; /* normal,italic,oblique */
-}
-
-QLabel {
-    font-family:YaHei Mono;'CherryPy', 'pytz', 'mako', 'beautifulsoup4', 'pymysql', 'peewee'
-    /* 下方的 Minibuffer 標題字型大小 */
-    font-size: 20px;
-    font-weight: normal; /* normal,bold,100,..,900 */
-    font-style: normal; /* normal,italic,oblique */
-}
-
-/* Editor labels */
-QLineEdit#editorLabel {
-    background-color: #ffffec;
-    font-family:YaHei Mono;
-    /* 沒有直接對應字型大小 */
-    font-size: 20px;
-    font-weight: normal; /* normal,bold,100,..,900 */
-    font-style: normal; /* normal,italic,oblique */
-    border: 2px;
-    margin: 2px;
-}</t>
-<t tx="yen.20170108171605.3">horizontal: body pane to the left
-vertical: body pane on the botton</t>
 <t tx="yen.20170108171622.1">2017 Spring CD 機械設計工程系協同產品設計實習
 
 倉儲位置: https://github.com/mdecourse/2017springcd
@@ -245,91 +241,6 @@ make.start()</t>
 @others
 
 </t>
-<t tx="yen.20170120110024.10"># 投影片快捷鍵
-
-* 利用箭頭上下前後換頁
-* 按 f 鍵進入全螢幕模式 (full screen)
-* 按 s 鍵可以顯示投影片筆記 (show)
-* 按 o 鍵可以切換單張或全域檢視 (overview)
-* 按 b 或 . 鍵可以切換螢幕黑屏 (black)
-* 按 Esc 可以退出全螢幕或全域檢視 (Escape)
-
-</t>
-<t tx="yen.20170120110024.11">&lt;section&gt;
-@others
-&lt;/section&gt;</t>
-<t tx="yen.20170120110024.12">&lt;section data-markdown&gt;
-    &lt;script type="text/template"&gt;
-&lt;!-- 請注意, @others 不可以內縮 --&gt;
-@others
-    &lt;/script&gt;
-&lt;/section&gt;
-
-
-
-						
-</t>
-<t tx="yen.20170120110024.13"># 數學符號與方程式
-
-Inline math equations go in like so: $\omega = d\phi / dt$. Display
-math should get its own line and be put in in double-dollarsigns:
-
-$$I = \int \rho R^{2} dV$$
-</t>
-<t tx="yen.20170120110024.14">&lt;section data-markdown&gt;
-    &lt;script type="text/template"&gt;
-&lt;!-- 請注意, @others 不可以內縮 --&gt;
-@others
-    &lt;/script&gt;
-&lt;/section&gt;
-
-
-
-						
-</t>
-<t tx="yen.20170120110024.15">## 利用 Markdown 寫投影片
-以下利用 Markdown 格式展示 Python 程式碼:
-```
-@language python
-# use threading and subprocess to threading the make process
-import os
-import subprocess
-import threading
-
-def domake():
-    
-    path = "../exposed/api/exposed"
-    ubuntu = "../Ubuntu"
-    
-    # create obj path
-    
-    if not os.path.exists(path+"/../obj"):
-        os.makedirs(path+"/../obj")
-    
-    subprocess.call(["make", "clean"], cwd=path)
-    subprocess.call("make", cwd=path)
-    subprocess.call(["cp", "{libslvs.so, _slvs.so, slvs.py}", ubuntu], cwd=path)
-    subprocess.call(["python3", "circle_ex.py"], cwd=path+"/"+ubuntu)
-    
-make = threading.Thread(target=domake)
-make.start()
-```
-</t>
-<t tx="yen.20170120110024.16">&lt;section data-markdown&gt;
-    &lt;script type="text/template"&gt;
-@others
-    &lt;/script&gt;
-&lt;/section&gt;
-
-
-						
-</t>
-<t tx="yen.20170120110024.17">## 使用 iframe 導入影片
-
-### 導入影片 template
-
-&lt;iframe src="https://player.vimeo.com/video/183950627" width="640" height="492" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
-</t>
 <t tx="yen.20170120110024.2">&lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 @others
@@ -401,42 +312,6 @@ make.start()
 @others
 &lt;/div&gt;
 
-</t>
-<t tx="yen.20170120110024.6">&lt;!-- Any section element inside of this container is displayed as a slide --&gt;
-&lt;div class="slides"&gt;
-@others
-&lt;/div&gt;
-
-</t>
-<t tx="yen.20170120110024.7">&lt;section data-markdown&gt;
-    &lt;script type="text/template"&gt;
-@others
-    &lt;/script&gt;
-&lt;/section&gt;
-
-
-						
-</t>
-<t tx="yen.20170120110024.8">## 2017Spring 協同產品設計實習
-
-### 虎科大機械設計工程系
-
-&lt;small&gt;
-Created by [KMOLab](http://chiamingyen.github.io/kmolab/blog/)
-&lt;/small&gt;
-
-[協同產品設計實習課程網誌](blog/index.html)
-
-
-</t>
-<t tx="yen.20170120110024.9">&lt;section data-markdown&gt;
-    &lt;script type="text/template"&gt;
-@others
-    &lt;/script&gt;
-&lt;/section&gt;
-
-
-						
 </t>
 <t tx="yen.20170120212350.1"></t>
 <t tx="yen.20170120212354.1">@language python
@@ -724,336 +599,6 @@ $(document).ready(function() {
 &lt;button id="sendbutton"&gt;Send&lt;/button&gt;
 &lt;/body&gt;
 &lt;/html&gt;</t>
-<t tx="yen.20170207091131.1">@language md
-Title: 網際 Brython 程式執行環境
-Date: 2017-02-07 11:00
-Category: Course
-Tags: brython, w1
-Slug: brython-editor
-Author: yen
-
-Brython 程式環境可以用來練習許多 Python3 的簡單語法, 也可以納入 Javascript 程式庫, 利用 Ajax 模式結合網際瀏覽器與伺服器上的資源解決協同產品設計流程上的問題.
-
-&lt;!-- PELICAN_END_SUMMARY --&gt;
-
-&lt;!-- 導入 FileSaver 與 filereader --&gt;
-&lt;script type="text/javascript" src="./../ace/FileSaver.min.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./../ace/filereader.js"&gt;&lt;/script&gt;
-
-&lt;!-- 導入 Brython 標準程式庫 --&gt;
-&lt;!-- &lt;script type="text/javascript" src="https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js"&gt;
-&lt;/script&gt; --&gt;
-
-&lt;!-- 為了讓 import script1 可以正確運行, 停留在 Brython 3.2.9 版 --&gt;
-
-&lt;script type="text/javascript" src="https://cdn.rawgit.com/brython-dev/brython/3.2.9/www/src/brython_dist.js"&gt;
-&lt;/script&gt;
-
-&lt;!-- 啟動 Brython --&gt;
-&lt;script&gt;
-window.onload=function(){
-brython(1);
-}
-&lt;/script&gt;
-
-&lt;!-- 以下執行 Brython 程式 --&gt;
-
-列出 2017 Spring 協同產品設計實習課程日期之 Python 程式碼如下:
-
-&lt;pre class="brush: python"&gt;
-&lt;div id="cal2"&gt;&lt;/div&gt;
-&lt;script type="text/python3"&gt;
-from browser import document, html
-import calendar
-import locale
-
-cal2 = document["cal2"]
-
-def getClassdate(year=2017, startM=2, startD=20, w=0, note=""):
-    # w=0 表示課程排在星期一
-    # startM 表示開學月份, startD 表示開學日
-    # note 為課程初始告示
-    # default calendar MONDAY is the first day of the week
-    # 每學期共有 18 週
-    totalW = 18
-    count = 0
-    # output = "2017 Spring 2bCD (三) 08:10-12:00 各週上課日期: "
-    output = note + html.BR()
-    # 若必須全年搜尋則 7 改為 12, 但是因為只有 18 週, 因此邏輯要修改讓程式較快結束
-    for month in range(startM, 7):
-        monthArray = calendar.monthcalendar(2017, month)
-        for week in range(len(monthArray)):
-            weekArray = monthArray[week]
-            # 只需要列出星期 (w+1)
-            if weekArray[w] != 0:
-                if month == startM:
-                    if weekArray[startM] &gt; startD:
-                        count += 1
-                        if count &lt;= totalW:
-                            if month == 3 and weekArray[w] == 31:
-                                output += "w"+str(count)+"-"+ str(month)+ "/" + str(weekArray[w]) + "(放假), "
-                            else:
-                                output += "w"+str(count)+"-"+ str(month)+ "/" + str(weekArray[w]) + ", "
-                else:
-                    count += 1
-                    if count &lt;=  totalW:
-                        if month == 3 and weekArray[w] == 31:
-                            output += "w"+str(count)+"-"+ str(month)+ "/" + str(weekArray[w]) + "(放假), "
-                        else:
-                            output += "w"+str(count)+"-"+ str(month)+ "/" + str(weekArray[w]) + ", "
-    cal2 &lt;= output
-
-# 2b 協同產品設計實習 (三 w=2)
-getClassdate(year=2017, startM=2, startD=20, w=2, note="2017 Spring 2bCD (三) 08:10-12:00 各週上課日期: ")
-cal2 &lt;= html.BR() + html.BR()
-# 2a 協同產品設計實習 (四 w=3)
-getClassdate(year=2017, startM=2, startD=20, w=3, note="2017 Spring 2aCD (四) 08:10-12:00 各週上課日期: ")
-cal2 &lt;= html.BR() + html.BR()
-# 1a 網際內容管理 (五 w=4)
-getClassdate(year=2017, startM=2, startD=20, w=4, note="2017 Spring 1aWCM (五) 13:20-16:10 各週上課日期: ")
-cal2 &lt;= html.BR() + html.BR()
-# VE1a 網際內容管理 (五 w=4)
-getClassdate(year=2017, startM=2, startD=20, w=4, note="2017 Spring VE1aCP (五) 18:30-20:00 各週上課日期: ")
-cal2 &lt;= html.BR() + html.BR()
-&lt;/script&gt;
-&lt;/pre&gt;
-
-### 利用伺服器執行 Python3 程式
-
-Jupyterhub: &lt;a href="https://8888.kmol.info:9443"&gt;https://8888.kmol.info:9443&lt;/a&gt;
-
-### 利用以下的編輯器執行 Python3 程式
-
-在 Firefox 中, 以 Preferences - General - Downloads 選擇"Always ask me where to save files"
-
-在 Chrome 中, 以 Settings - Advanced - Downloads 選擇 Ask where to save each file before downloading
-
-&lt;script src="./../ace/ace.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;
-&lt;script src="./../ace/ext-language_tools.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;
-&lt;script src="./../ace/mode-python3.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;
-&lt;script src="./../ace/snippets/python.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;
-&lt;!-- 請注意, 這裡使用 Javascript 將 localStorage["py_src"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--&gt;
-&lt;script type="text/javascript"&gt;
-function doSave(){
-    var blob = new Blob([localStorage["py_src"]], {type: "text/plain;charset=utf-8"});
-    filename = document.getElementById('filename').value
-    saveAs(blob, filename+".py");
-}
-&lt;/script&gt;
-
-&lt;script type="text/python3" id="script1"&gt;
-import sys
-import time
-import traceback
-import javascript
-
-from browser import document as doc, window, alert
-
-has_ace = True
-try:
-    editor = window.ace.edit("editor")
-    session = editor.getSession()
-    session.setMode("ace/mode/python")
-
-    editor.setOptions({
-     'enableLiveAutocompletion': True,
-     'enableSnippets': True,
-     'highlightActiveLine': False,
-     'highlightSelectedWord': True
-    })
-except:
-    from browser import html
-    editor = html.TEXTAREA(rows=20, cols=70)
-    doc["editor"] &lt;= editor
-    def get_value(): return editor.value
-    def set_value(x):editor.value = x
-    editor.getValue = get_value
-    editor.setValue = set_value
-    has_ace = False
-
-if hasattr(window, 'localStorage'):
-    from browser.local_storage import storage
-else:
-    storage = None
-
-def reset_src():
-    if storage is not None and "py_src" in storage:
-        editor.setValue(storage["py_src"])
-    else:
-        editor.setValue('for i in range(10):\n\tprint(i)')
-    editor.scrollToRow(0)
-    editor.gotoLine(0)
-
-def reset_src_area():
-    if storage and "py_src" in storage:
-        editor.value = storage["py_src"]
-    else:
-        editor.value = 'for i in range(10):\n\tprint(i)'
-
-class cOutput:
-
-    def __init__(self,target):
-        self.target = doc[target]
-    def write(self,data):
-        self.target.value += str(data)
-        
-
-#if "console" in doc:
-sys.stdout = cOutput("console")
-sys.stderr = cOutput("console")
-
-def to_str(xx):
-    return str(xx)
-
-info = sys.implementation.version
-doc['version'].text = 'Brython %s.%s.%s' % (info.major, info.minor, info.micro)
-
-output = ''
-
-def show_console(ev):
-    doc["console"].value = output
-    doc["console"].cols = 60
-    doc["console"].rows = 10
-
-# load a Python script
-def load_script(evt):
-    _name = evt.target.value + '?foo=%s' % time.time()
-    editor.setValue(open(_name).read())
-
-# run a script, in global namespace if in_globals is True
-def run(*args):
-    global output
-    doc["console"].value = ''
-    src = editor.getValue()
-    if storage is not None:
-       storage["py_src"] = src
-
-    t0 = time.perf_counter()
-    try:
-        #ns = {'__name__':'__main__'}
-        ns = {'__name__':'editor'}
-        exec(src, ns)
-        state = 1
-    except Exception as exc:
-        traceback.print_exc(file=sys.stderr)
-        state = 0
-    output = doc["console"].value
-
-    print('&lt;completed in %6.2f ms&gt;' % ((time.perf_counter() - t0) * 1000.0))
-    return state
-
-if has_ace:
-    reset_src()
-else:
-    reset_src_area()
-    
-def clear_console(ev):
-    doc["console"].value = ""
-
-doc['run'].bind('click',run)
-doc['show_console'].bind('click',show_console)
-doc['clear_console'].bind('click',clear_console)
-&lt;/script&gt;
-
-&lt;div id="version"&gt;&lt;/div&gt;
-&lt;div id="editor" style="width:600px;height:300px;"&gt;&lt;/div&gt;
-
-&lt;!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --&gt;
-
-&lt;form&gt;
-    &lt;label&gt;Filename: &lt;input type="text" id="filename" placeholder="input file name"/&gt;.py&lt;/label&gt;
-    &lt;input type="submit" value="Save" onclick="doSave();"/&gt;
-&lt;/form&gt;
-&lt;button id="run"&gt;Run&lt;/button&gt;
-&lt;button id="show_console"&gt;Output&lt;/button&gt;
-&lt;button id="clear_console"&gt;清除&lt;/button&gt;
-&lt;div style="width:100%;height:100%;"&gt;
-&lt;textarea id="console" autocomplete="off"&gt;&lt;/textarea&gt;
-&lt;/div&gt;
-&lt;div id="common"&gt;&lt;/div&gt;
-@others</t>
-<t tx="yen.20170207091131.2">
-&lt;script type="text/python3"&gt;
-from browser import document as doc
-import script1
-
-def ex1(ev):
-    script1.editor.setValue('''#ex1 簡單的 for 迴圈範例
-    for i in range(10):
-        print(i)
-    ''')
-    script1.editor.scrollToRow(0)
-    script1.editor.gotoLine(0)
-doc['ex1'].bind('click',ex1)
-&lt;/script&gt;&lt;a id="ex1"&gt;ex1&lt;/a&gt;-for 迴圈
-</t>
-<t tx="yen.20170207091131.3">
-&lt;script type="text/python3"&gt;
-from browser import document as doc
-import script1
-
-def ex2(ev):
-    script1.editor.setValue('''#溫度轉換程式
-from browser import document as doc
-
-# 因為此函式與滑鼠互動, 需要 event 當作輸入
-def convTemp():
-    mystring = ""
-    cdegree = input("請輸入攝氏溫度:")
-    fdegree = float(cdegree)*9/5 + 32
-    output_string = "攝氏 " + str(cdegree) + "度=華氏 " + str(fdegree) + "度" 
-    # 利用 print() 將轉換結果送到 console 區
-    print(output_string)
-
-#直接呼叫 convTemp() 執行
-convTemp()
-    ''')
-    script1.editor.scrollToRow(0)
-    script1.editor.gotoLine(0)
-doc['ex2'].bind('click',ex2)
-&lt;/script&gt;&lt;a id="ex2"&gt;ex2&lt;/a&gt;-溫度換算</t>
-<t tx="yen.20170207091131.4">
-&lt;script type="text/python3"&gt;
-from browser import document
-import script1
-
-def get_file(e):
-    data = open("./../python_ex/for1.py").read()
-    script1.editor.setValue(data)
-    script1.editor.scrollToRow(0)
-    script1.editor.gotoLine(0)
-    
-document["get"].bind("click", get_file)
-&lt;/script&gt;
-
-&lt;script type="text/python3"&gt;
-from browser import document
-import script1
-
-def get_temp1(e):
-    data = open("./../python_ex/temp1.py").read()
-    script1.editor.setValue(data)
-    script1.editor.scrollToRow(0)
-    script1.editor.gotoLine(0)
-    
-document["get_temp1"].bind("click", get_temp1)
-&lt;/script&gt;
-
-&lt;script type="text/python3"&gt;
-from browser import document
-import script1
-
-def get_ver_and_kw(e):
-    data = open("./../python_ex/ver_and_kw.py").read()
-    script1.editor.setValue(data)
-    script1.editor.scrollToRow(0)
-    script1.editor.gotoLine(0)
-    
-document["get_ver_and_kw"].bind("click", get_ver_and_kw)
-&lt;/script&gt;
-
-&lt;button id="get"&gt;for1.py&lt;/button&gt;&lt;button id="get_temp1"&gt;temp1.py&lt;/button&gt;&lt;button id="get_ver_and_kw"&gt;ver_and_kw.py&lt;/button&gt;
-</t>
 <t tx="yen.20170207092354.1">##利用 IPv6 網路傳輸設計檔案
 
 &lt;pre class="brush: python"&gt;
