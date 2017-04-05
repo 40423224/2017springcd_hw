@@ -2,8 +2,7 @@
 <html lang="en"
 >
 <head>
-    <title>Search - 2017Spring 協同產品設計實習 (虎尾科大MDE)
-</title>
+    <title>week5 - 2017Spring 協同產品設計實習 (虎尾科大MDE)</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -11,15 +10,21 @@
 
 
 
+<link rel="canonical" href="./week5.html">
 
-        <meta name="author" content="KMOL" />
+        <meta name="author" content="40423224" />
+        <meta name="keywords" content="w5" />
+        <meta name="description" content="fossil wiki首頁的使用及使one-link bar轉動" />
 
-    <!-- Open Graph tags -->
         <meta property="og:site_name" content="2017Spring 協同產品設計實習 (虎尾科大MDE)" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="2017Spring 協同產品設計實習 (虎尾科大MDE)"/>
-        <meta property="og:url" content="."/>
-        <meta property="og:description" content="2017Spring 協同產品設計實習 (虎尾科大MDE)"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="week5"/>
+        <meta property="og:url" content="./week5.html"/>
+        <meta property="og:description" content="fossil wiki首頁的使用及使one-link bar轉動"/>
+        <meta property="article:published_time" content="2017-03-22" />
+            <meta property="article:section" content="40423224" />
+            <meta property="article:tag" content="w5" />
+            <meta property="article:author" content="40423224" />
 
 
     <!-- Bootstrap -->
@@ -100,7 +105,7 @@
                          <li><a href="./pages/about/">
                              About
                           </a></li>
-                        <li >
+                        <li class="active">
                             <a href="./category/40423224.html">40423224</a>
                         </li>
             </ul>
@@ -122,7 +127,55 @@
     <div class="row">
         <div class="col-sm-9">
 
-<div id="tipue_search_content"></div>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./week5.html"
+                       rel="bookmark"
+                       title="Permalink to week5">
+                        week5
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-03-22T11:00:00+08:00"> Wed 22 March 2017</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="./author/40423224.html"><i class="fa fa-user"></i> 40423224</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/w5.html">w5</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>fossil wiki首頁的使用及使one-link bar轉動
+</p>
+<p>建立一個與project name同名的wiki，該wiki會成為首頁</p>
+
+<p>認識fossil wiki的三種編譯方式-Fossil wiki，Markdown 以及Plain text</p>
+
+<p>嘗試利用V-rep使solvespace做出的one-link bar，利用triangle mesh存檔後進行旋轉做動</p>
+
+<p>做好one link bar 之後要利用export triangle mesh存成stl檔，在V-REP用inport打開此檔案，之後用edit>grouping/merging>divide selected shapes進行分解</p>
+
+<p>將軸放至底部的子目錄，再將上蓋放置軸的子目錄進行固定，最後將軸變成馬達，即可讓簡易的one-link bar進行轉動</p>
+
+<iframe src="https://player.vimeo.com/video/211594787" width="640" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+<p><a href="https://vimeo.com/211594787">2017-03-28_40423224_w5</a> from <a href="https://vimeo.com/user64028462">鲜奶仙草冻</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
@@ -231,20 +284,5 @@
 <script src="./theme/js/respond.min.js"></script>
 
 
-    <link href="./theme/tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script type="text/javascript" src="./theme/tipuesearch/tipuesearch_set.js"></script>
-    <script type="text/javascript" src="./theme/tipuesearch/tipuesearch.min.js"></script>
-    <!-- 導入 local Tipue search 所需要的 tipuesearch_content.js -->
-    <script type="text/javascript" src="./tipuesearch_content.js"></script>
-    <script>
-    $(document).ready(function() {
-      $('#tipue_search_input').tipuesearch({
-        'mode' : 'static',
-        'show': 10,
-        'minimumLength': 2,
-        'newWindow': false
-      });
-    });
-    </script>
 </body>
 </html>
