@@ -30,17 +30,26 @@
 <v t="yen.20170120110024.4" a="E"><vh>body</vh>
 <v t="yen.20170120110024.5" a="E"><vh>reveal div</vh>
 <v t="leo.20170312160138.1" a="E"><vh>slides div</vh>
-<v t="leo.20170312160138.2" a="E"><vh>封面投影片</vh>
+<v t="leo.20170312160138.2"><vh>封面投影片</vh>
 <v t="leo.20170312160138.3"><vh>封面投影片內容</vh></v>
 </v>
-<v t="leo.20170312160138.4" a="E"><vh>封面投影片</vh>
+<v t="leo.20170312160138.4"><vh>封面投影片</vh>
 <v t="leo.20170312160138.5"><vh>封面投影片內容</vh></v>
 </v>
-<v t="leo.20170312160138.6" a="E"><vh>封面投影片</vh>
+<v t="leo.20170312160138.6"><vh>封面投影片</vh>
 <v t="leo.20170312160138.7"><vh>封面投影片內容</vh></v>
 </v>
-<v t="leo.20170312160138.8" a="E"><vh>封面投影片</vh>
+<v t="leo.20170312160138.8"><vh>封面投影片</vh>
 <v t="leo.20170312160138.9"><vh>封面投影片內容</vh></v>
+</v>
+<v t="leo.20170405090754.1" a="E"><vh>封面投影片</vh>
+<v t="leo.20170405090754.2"><vh>封面投影片內容</vh></v>
+</v>
+<v t="leo.20170405090827.1" a="E"><vh>封面投影片</vh>
+<v t="leo.20170405090827.2"><vh>封面投影片內容</vh></v>
+</v>
+<v t="leo.20170405090850.1" a="E"><vh>封面投影片</vh>
+<v t="leo.20170405090850.2"><vh>封面投影片內容</vh></v>
 </v>
 </v>
 </v>
@@ -51,6 +60,9 @@
 <v t="leo.20170312160338.1"><vh>@edit 20170222.md</vh></v>
 <v t="leo.20170312160330.1"><vh>@edit 20170301.md</vh></v>
 <v t="leo.20170312160310.1"><vh>@edit 20170308.md</vh></v>
+<v t="leo.20170405090110.1"><vh>@edit 20170320.md</vh></v>
+<v t="leo.20170405090358.1"><vh>@edit 20170322.md</vh></v>
+<v t="leo.20170405090922.1"><vh>@edit 20170329.md</vh></v>
 <v t="yen.20170108171733.81"><vh>@path pages</vh>
 <v t="yen.20170108171733.82"><vh>@edit pages_1.md</vh></v>
 </v>
@@ -163,6 +175,56 @@ Created by [40423224](https://40423224.github.io/2017springcd_hw/blog/)
 * 更改start的fossil路徑並且建立自己的近端fossil帳號密碼
 
 </t>
+<t tx="leo.20170405090754.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20170405090754.2">#week4
+
+* 使用老師建立的新fossil，獲得管理權後加入其他組員
+* 認識Xming X-windows vnc remote desktop
+* 介紹altair的應力分析
+
+</t>
+<t tx="leo.20170405090827.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20170405090827.2">#week5
+
+* 建立一個與project name同名的wiki，該wiki會成為首頁
+
+* 認識fossil wiki的三種編譯方式-Fossil wiki，Markdown 以及Plain text
+
+* 嘗試利用V-rep使solvespace做出的one-link bar，利用triangle mesh存檔後進行旋轉做動
+
+* 做好one link bar 之後要利用export triangle mesh存成stl檔，在V-REP用inport打開此檔案，之後用edit&gt;grouping/merging&gt;divide selected shapes進行分解
+
+* 將軸放至底部的子目錄，再將上蓋放置軸的子目錄進行固定，最後將軸變成馬達，即可讓簡易的one-link bar進行轉動
+</t>
+<t tx="leo.20170405090850.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20170405090850.2">#week6
+
+* 完成其他組件的v-rep做動模擬
+* 完成課程遺漏部分便於下週進行自評</t>
 <t tx="yen.20170108171605.1"></t>
 <t tx="yen.20170108171622.1">2017 Spring CD 機械設計工程系協同產品設計實習
 
