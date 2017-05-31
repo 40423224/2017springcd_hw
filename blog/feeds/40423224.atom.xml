@@ -1,5 +1,964 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>2017Spring 協同產品設計實習 (虎尾科大MDE)</title><link href="./" rel="alternate"></link><link href="./feeds/40423224.atom.xml" rel="self"></link><id>./</id><updated>2017-04-19T11:00:00+08:00</updated><entry><title>Week8</title><link href="./week8.html" rel="alternate"></link><published>2017-04-19T11:00:00+08:00</published><updated>2017-04-19T11:00:00+08:00</updated><author><name>40423224</name></author><id>tag:,2017-04-19:./week8.html</id><summary type="html">&lt;p&gt;零件视频：https://youtu.be/dbJb6Fl12oo
+<feed xmlns="http://www.w3.org/2005/Atom"><title>2017Spring 協同產品設計實習 (虎尾科大MDE)</title><link href="./" rel="alternate"></link><link href="./feeds/40423224.atom.xml" rel="self"></link><id>./</id><updated>2017-05-31T11:00:00+08:00</updated><entry><title>W15練習</title><link href="./w15lian-xi.html" rel="alternate"></link><published>2017-05-31T11:00:00+08:00</published><updated>2017-05-31T11:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-05-31:./w15lian-xi.html</id><summary type="html">&lt;p&gt;組員協同練習
+
+&lt;!-- 導入 Brython 標準程式庫 --&gt;&lt;/p&gt;
+&lt;script src="../data/Brython-3.3.1/brython.js"&gt;&lt;/script&gt;
+
+&lt;script src="../data/Brython-3.3.1/brython_stdlib.js"&gt;&lt;/script&gt;
+
+&lt;!-- 啟動 Brython --&gt;
+
+&lt;script&gt;
+window.onload=function(){
+// 設定 data/py 為共用程式路徑
+brython({debug:1, pythonpath:['./../data/py']});
+}
+&lt;/script&gt;
+
+&lt;!-- 以下實際利用  Brython 繪圖--&gt;
+
+&lt;canvas id="onegear" width="800" height="600"&gt;&lt;/canvas&gt;
+
+&lt;div id="onegear_div" width="800" height="20"&gt;&lt;/div&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document as doc
+import math
+# deg 為角度轉為徑度的轉換因子
+deg = math.pi/180.
+# 定義 Spur 類別
+class Spur(object):
+    def __init__(self, ctx):
+        self.ctx = ctx
+
+    def create_line(self, x1, y1, x2, y2, width=3, fill="red"):
+        self.ctx.beginPath()
+        self.ctx.lineWidth = width
+        self.ctx.moveTo(x1, y1)
+        self.ctx.lineTo(x2, y2)
+        self.ctx.strokeStyle = fill
+        self.ctx.stroke()
+    #
+    # 定義一個繪正齒輪的繪圖函式
+    # midx 為齒輪圓心 x 座標
+    # midy 為齒輪圓心 y 座標
+    # rp 為節圓半徑, n 為齒數
+    # pa 為壓力角 (deg)
+    # rot 為旋轉角 (deg)
+    # 已經針對 n 大於等於 52 齒時的繪圖錯誤修正, 因為 base circle 與齒根圓大小必須進行判斷
+    def Gear(self, midx, midy, rp, n=20, pa=20, color="black"):
+        # 齒輪漸開線分成 15 線段繪製
+        imax = 15
+        # 在輸入的畫布上繪製直線, 由圓心到節圓 y 軸頂點畫一直線
+        self.create_line(midx, midy, midx, midy-rp)
+        # 畫出 rp 圓, 畫圓函式尚未定義
+        #create_oval(midx-rp, midy-rp, midx+rp, midy+rp, width=2)
+        # a 為模數 (代表公制中齒的大小), 模數為節圓直徑(稱為節徑)除以齒數
+        # 模數也就是齒冠大小
+        a=2*rp/n
+        # d 為齒根大小, 為模數的 1.157 或 1.25倍, 這裡採 1.25 倍
+        d=2.5*rp/n
+        # ra 為齒輪的外圍半徑
+        ra=rp+a
+        # 畫出 ra 圓, 畫圓函式尚未定義
+        #create_oval(midx-ra, midy-ra, midx+ra, midy+ra, width=1)
+        # rb 則為齒輪的基圓半徑
+        # 基圓為漸開線長齒之基準圓
+        rb=rp*math.cos(pa*deg)
+        # 畫出 rb 圓 (基圓), 畫圓函式尚未定義
+        #create_oval(midx-rb, midy-rb, midx+rb, midy+rb, width=1)
+        # rd 為齒根圓半徑
+        rd=rp-d
+        # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
+        # 畫出 rd 圓 (齒根圓), 畫圓函式尚未定義
+        #create_oval(midx-rd, midy-rd, midx+rd, midy+rd, width=1)
+        # dr 則為基圓到齒頂圓半徑分成 imax 段後的每段半徑增量大小
+        # 將圓弧分成 imax 段來繪製漸開線
+        # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
+        if rd&gt;rb:
+            dr = (ra-rd)/imax
+        else:
+            dr=(ra-rb)/imax
+        # tan(pa*deg)-pa*deg 為漸開線函數
+        sigma=math.pi/(2*n)+math.tan(pa*deg)-pa*deg
+        for j in range(n):
+            ang=-2.*j*math.pi/n+sigma
+            ang2=2.*j*math.pi/n+sigma
+            lxd=midx+rd*math.sin(ang2-2.*math.pi/n)
+            lyd=midy-rd*math.cos(ang2-2.*math.pi/n)
+            for i in range(imax+1):
+                # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
+                if rd&gt;rb:
+                    r=rd+i*dr
+                else:
+                    r=rb+i*dr
+                theta=math.sqrt((r*r)/(rb*rb)-1.)
+                alpha=theta-math.atan(theta)
+                xpt=r*math.sin(alpha-ang)
+                ypt=r*math.cos(alpha-ang)
+                xd=rd*math.sin(-ang)
+                yd=rd*math.cos(-ang)
+                # i=0 時, 繪線起點由齒根圓上的點, 作為起點
+                if(i==0):
+                    last_x = midx+xd
+                    last_y = midy-yd
+                # 由左側齒根圓作為起點, 除第一點 (xd,yd) 齒根圓上的起點外, 其餘的 (xpt,ypt)則為漸開線上的分段點
+                self.create_line((midx+xpt),(midy-ypt),(last_x),(last_y),fill=color)
+                # 最後一點, 則為齒頂圓
+                if(i==imax):
+                    lfx=midx+xpt
+                    lfy=midy-ypt
+                last_x = midx+xpt
+                last_y = midy-ypt
+            # the line from last end of dedendum point to the recent
+            # end of dedendum point
+            # lxd 為齒根圓上的左側 x 座標, lyd 則為 y 座標
+            # 下列為齒根圓上用來近似圓弧的直線
+            self.create_line((lxd),(lyd),(midx+xd),(midy-yd),fill=color)
+            for i in range(imax+1):
+                # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
+                if rd&gt;rb:
+                    r=rd+i*dr
+                else:
+                    r=rb+i*dr
+                theta=math.sqrt((r*r)/(rb*rb)-1.)
+                alpha=theta-math.atan(theta)
+                xpt=r*math.sin(ang2-alpha)
+                ypt=r*math.cos(ang2-alpha)
+                xd=rd*math.sin(ang2)
+                yd=rd*math.cos(ang2)
+                # i=0 時, 繪線起點由齒根圓上的點, 作為起點
+                if(i==0):
+                    last_x = midx+xd
+                    last_y = midy-yd
+                # 由右側齒根圓作為起點, 除第一點 (xd,yd) 齒根圓上的起點外, 其餘的 (xpt,ypt)則為漸開線上的分段點
+                self.create_line((midx+xpt),(midy-ypt),(last_x),(last_y),fill=color)
+                # 最後一點, 則為齒頂圓
+                if(i==imax):
+                    rfx=midx+xpt
+                    rfy=midy-ypt
+                last_x = midx+xpt
+                last_y = midy-ypt
+            # lfx 為齒頂圓上的左側 x 座標, lfy 則為 y 座標
+            # 下列為齒頂圓上用來近似圓弧的直線
+            self.create_line(lfx,lfy,rfx,rfy,fill=color)
+canvas = doc['onegear']
+ctx = canvas.getContext("2d")
+x = (canvas.width)/2
+y = (canvas.height)/2
+r = 0.8*(canvas.height/2)
+# 齒數
+n = 36
+# 壓力角
+pa = 20
+Spur(ctx).Gear(x, y, r, n, pa, "blue")
+# 以下列出 W11 2B 與 2A 未出席人數
+data = open("./../data/w11/2b0503.txt", encoding="utf-8").read()
+data1 = open("./../data/w11/2a0504.txt", encoding="utf-8").read()
+count = 0
+count1 = 0
+# 去掉前面兩列
+student = data.split("\n")[2:]
+student1 = data1.split("\n")[2:]
+for i in range(len(student)):
+    each = student[i].split("\t")
+    # 請注意, Brython 在 Windows 環境無法正確判定字串, 原因不明
+    if each[1] != "出席":
+        count = count + 1
+for i in range(len(student1)):
+    each1 = student1[i].split("\t")
+    if each1[1] != "present":
+        count1 = count1 + 1
+div = doc["onegear_div"]
+div &lt;= "2b: " +  str(count) + "/" + str(len(student)) + "|" + "2a: " +  str(count1) + "/" + str(len(student1))
+&lt;/script&gt;</summary><category term="spur2"></category></entry><entry><title>cango2DSpurSimulate</title><link href="./cango2dspursimulate.html" rel="alternate"></link><published>2017-05-16T11:00:00+08:00</published><updated>2017-05-16T11:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-05-16:./cango2dspursimulate.html</id><summary type="html">&lt;p&gt;正齒輪2d模擬
+
+&lt;!-- 導入 Brython 標準程式庫 --&gt;&lt;/p&gt;
+&lt;script src="../data/Brython-3.3.1/brython.js"&gt;&lt;/script&gt;
+
+&lt;script src="../data/Brython-3.3.1/brython_stdlib.js"&gt;&lt;/script&gt;
+
+&lt;!-- 啟動 Brython --&gt;
+
+&lt;script&gt;
+window.onload=function(){
+// 設定 data/py 為共用程式路徑
+brython({debug:1, pythonpath:['./../data/py']});
+}
+&lt;/script&gt;
+
+&lt;!-- 以下實際利用  Brython 繪圖--&gt;
+
+&lt;canvas id="onegear" width="800" height="600"&gt;&lt;/canvas&gt;
+
+&lt;div id="onegear_div" width="800" height="20"&gt;&lt;/div&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document as doc
+import math
+# deg 為角度轉為徑度的轉換因子
+deg = math.pi/180.
+# 定義 Spur 類別
+class Spur(object):
+    def __init__(self, ctx):
+        self.ctx = ctx
+
+    def create_line(self, x1, y1, x2, y2, width=3, fill="red"):
+        self.ctx.beginPath()
+        self.ctx.lineWidth = width
+        self.ctx.moveTo(x1, y1)
+        self.ctx.lineTo(x2, y2)
+        self.ctx.strokeStyle = fill
+        self.ctx.stroke()
+    #
+    # 定義一個繪正齒輪的繪圖函式
+    # midx 為齒輪圓心 x 座標
+    # midy 為齒輪圓心 y 座標
+    # rp 為節圓半徑, n 為齒數
+    # pa 為壓力角 (deg)
+    # rot 為旋轉角 (deg)
+    # 已經針對 n 大於等於 52 齒時的繪圖錯誤修正, 因為 base circle 與齒根圓大小必須進行判斷
+    def Gear(self, midx, midy, rp, n=20, pa=20, color="black"):
+        # 齒輪漸開線分成 15 線段繪製
+        imax = 15
+        # 在輸入的畫布上繪製直線, 由圓心到節圓 y 軸頂點畫一直線
+        self.create_line(midx, midy, midx, midy-rp)
+        # 畫出 rp 圓, 畫圓函式尚未定義
+        #create_oval(midx-rp, midy-rp, midx+rp, midy+rp, width=2)
+        # a 為模數 (代表公制中齒的大小), 模數為節圓直徑(稱為節徑)除以齒數
+        # 模數也就是齒冠大小
+        a=2*rp/n
+        # d 為齒根大小, 為模數的 1.157 或 1.25倍, 這裡採 1.25 倍
+        d=2.5*rp/n
+        # ra 為齒輪的外圍半徑
+        ra=rp+a
+        # 畫出 ra 圓, 畫圓函式尚未定義
+        #create_oval(midx-ra, midy-ra, midx+ra, midy+ra, width=1)
+        # rb 則為齒輪的基圓半徑
+        # 基圓為漸開線長齒之基準圓
+        rb=rp*math.cos(pa*deg)
+        # 畫出 rb 圓 (基圓), 畫圓函式尚未定義
+        #create_oval(midx-rb, midy-rb, midx+rb, midy+rb, width=1)
+        # rd 為齒根圓半徑
+        rd=rp-d
+        # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
+        # 畫出 rd 圓 (齒根圓), 畫圓函式尚未定義
+        #create_oval(midx-rd, midy-rd, midx+rd, midy+rd, width=1)
+        # dr 則為基圓到齒頂圓半徑分成 imax 段後的每段半徑增量大小
+        # 將圓弧分成 imax 段來繪製漸開線
+        # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
+        if rd&gt;rb:
+            dr = (ra-rd)/imax
+        else:
+            dr=(ra-rb)/imax
+        # tan(pa*deg)-pa*deg 為漸開線函數
+        sigma=math.pi/(2*n)+math.tan(pa*deg)-pa*deg
+        for j in range(n):
+            ang=-2.*j*math.pi/n+sigma
+            ang2=2.*j*math.pi/n+sigma
+            lxd=midx+rd*math.sin(ang2-2.*math.pi/n)
+            lyd=midy-rd*math.cos(ang2-2.*math.pi/n)
+            for i in range(imax+1):
+                # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
+                if rd&gt;rb:
+                    r=rd+i*dr
+                else:
+                    r=rb+i*dr
+                theta=math.sqrt((r*r)/(rb*rb)-1.)
+                alpha=theta-math.atan(theta)
+                xpt=r*math.sin(alpha-ang)
+                ypt=r*math.cos(alpha-ang)
+                xd=rd*math.sin(-ang)
+                yd=rd*math.cos(-ang)
+                # i=0 時, 繪線起點由齒根圓上的點, 作為起點
+                if(i==0):
+                    last_x = midx+xd
+                    last_y = midy-yd
+                # 由左側齒根圓作為起點, 除第一點 (xd,yd) 齒根圓上的起點外, 其餘的 (xpt,ypt)則為漸開線上的分段點
+                self.create_line((midx+xpt),(midy-ypt),(last_x),(last_y),fill=color)
+                # 最後一點, 則為齒頂圓
+                if(i==imax):
+                    lfx=midx+xpt
+                    lfy=midy-ypt
+                last_x = midx+xpt
+                last_y = midy-ypt
+            # the line from last end of dedendum point to the recent
+            # end of dedendum point
+            # lxd 為齒根圓上的左側 x 座標, lyd 則為 y 座標
+            # 下列為齒根圓上用來近似圓弧的直線
+            self.create_line((lxd),(lyd),(midx+xd),(midy-yd),fill=color)
+            for i in range(imax+1):
+                # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
+                if rd&gt;rb:
+                    r=rd+i*dr
+                else:
+                    r=rb+i*dr
+                theta=math.sqrt((r*r)/(rb*rb)-1.)
+                alpha=theta-math.atan(theta)
+                xpt=r*math.sin(ang2-alpha)
+                ypt=r*math.cos(ang2-alpha)
+                xd=rd*math.sin(ang2)
+                yd=rd*math.cos(ang2)
+                # i=0 時, 繪線起點由齒根圓上的點, 作為起點
+                if(i==0):
+                    last_x = midx+xd
+                    last_y = midy-yd
+                # 由右側齒根圓作為起點, 除第一點 (xd,yd) 齒根圓上的起點外, 其餘的 (xpt,ypt)則為漸開線上的分段點
+                self.create_line((midx+xpt),(midy-ypt),(last_x),(last_y),fill=color)
+                # 最後一點, 則為齒頂圓
+                if(i==imax):
+                    rfx=midx+xpt
+                    rfy=midy-ypt
+                last_x = midx+xpt
+                last_y = midy-ypt
+            # lfx 為齒頂圓上的左側 x 座標, lfy 則為 y 座標
+            # 下列為齒頂圓上用來近似圓弧的直線
+            self.create_line(lfx,lfy,rfx,rfy,fill=color)
+canvas = doc['onegear']
+ctx = canvas.getContext("2d")
+x = (canvas.width)/2
+y = (canvas.height)/2
+r = 0.8*(canvas.height/2)
+# 齒數
+n = 53
+# 壓力角
+pa = 20
+Spur(ctx).Gear(x, y, r, n, pa, "blue")
+# 以下列出 W11 2B 與 2A 未出席人數
+data = open("./../data/w11/2b0503.txt", encoding="utf-8").read()
+data1 = open("./../data/w11/2a0504.txt", encoding="utf-8").read()
+count = 0
+count1 = 0
+# 去掉前面兩列
+student = data.split("\n")[2:]
+student1 = data1.split("\n")[2:]
+for i in range(len(student)):
+    each = student[i].split("\t")
+    # 請注意, Brython 在 Windows 環境無法正確判定字串, 原因不明
+    if each[1] != "出席":
+        count = count + 1
+for i in range(len(student1)):
+    each1 = student1[i].split("\t")
+    if each1[1] != "present":
+        count1 = count1 + 1
+div = doc["onegear_div"]
+div &lt;= "2b: " +  str(count) + "/" + str(len(student)) + "|" + "2a: " +  str(count1) + "/" + str(len(student1))
+&lt;/script&gt;
+
+&lt;!-- 以下處理 Cango Spur Gear --&gt;
+
+&lt;!-- Cango 程式庫 --&gt;
+
+&lt;script type="text/javascript" src="./../data/w11/cango
+/Cango-9v05-min.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript" src="./../data/w11/cango
+/CangoAxes-2v09.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript" src="./../data/w11/cango
+/CangoAnimation-5v00.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript" src="./../data/w11/cango
+/gearUtils-05.js"&gt;&lt;/script&gt;
+
+&lt;canvas id='cango_gear' width='800' height='750'&gt;&lt;/canvas&gt;
+
+&lt;script type="text/python"&gt;
+# 將 導入的 document 設為 doc 主要原因在於與舊程式碼相容
+from browser import document as doc
+# 由於 Python3 與 Javascript 程式碼已經不再混用, 因此來自 Javascript 的變數, 必須居中透過 window 物件轉換
+from browser import window
+import math
+
+# 主要用來取得畫布大小
+canvas = doc["cango_gear"]
+# 此程式採用 Cango Javascript 程式庫繪圖, 因此無需 ctx
+ctx = canvas.getContext("2d")
+cango = window.Cango.new
+# 針對變數的轉換, shapeDefs 在 Cango 中資料型別為變數, 可以透過 window 轉換
+shapedefs = window.shapeDefs
+# 目前 Cango 結合 Animation 在 Brython 尚無法運作, 此刻只能繪製靜態圖形
+# in CangoAnimation.js
+#interpolate1 = window.interpolate
+# Cobi 與 createGearTooth 都是 Cango Javascript 程式庫中的物件
+#cobj = window.Cobj.new
+shape = window.Shape.new
+path = window.Path.new
+creategeartooth = window.createGearTooth.new
+
+tweener = window.Tweener.new
+# 經由 Cango 轉換成 Brython 的 cango, 指定將圖畫在 id="cango_gear" 的 canvas 上
+cgo = cango("cango_gear")
+
+######################################
+# 畫正齒輪輪廓
+#####################################
+# n 為齒數
+n = 17
+# pa 為壓力角
+pa = 25
+# m 為模數, 根據畫布的寬度, 計算適合的模數大小
+# Module = mm of pitch diameter per tooth
+m = 0.8*canvas.width/n
+# pr 為節圓半徑
+pr = n*m/2 # gear Pitch radius
+# generate gear
+data = creategeartooth(m, n, pa)
+# Brython 程式中的 print 會將資料印在 Browser 的 console 區
+#print(data)
+gearTooth = shape(data, {
+  "fillColor":"#ddd0dd",
+  "border": True,
+  "strokeColor": "#606060" })
+gearTooth.rotate(180/n) # rotate gear 1/2 tooth to mesh
+# 單齒的齒形資料經過旋轉後, 將資料複製到 gear 物件中
+gear = gearTooth.dup()
+# gear 為單一齒的輪廓資料
+#cgo.render(gearTooth)
+
+# 利用單齒輪廓旋轉, 產生整個正齒輪外形
+for i in range(1, n):
+    # 將 gearTooth 中的資料複製到 newTooth
+    newTooth = gearTooth.dup()
+    # 配合迴圈, newTooth 的齒形資料進行旋轉, 然後利用 appendPath 方法, 將資料併入 gear
+    newTooth.rotate(360*i/n)
+    # appendPath 為 Cango 程式庫中的方法, 第二個變數為 True, 表示要刪除最前頭的 Move to SVG Path 標註符號
+    gear.appendPath(newTooth, True) # trim move command = True
+
+# 建立軸孔
+# add axle hole, hr 為 hole radius
+hr = 0.6*pr # diameter of gear shaft
+shaft = path(shapedefs.circle(hr))
+shaft.revWinding()
+gear.appendPath(shaft) # retain the 'moveTo' command for shaft sub path
+
+# setup the animation
+# backlash (mm)
+bklsh = 0.04*m
+# centre shift to make backlash
+dC = bklsh/(2*math.tan(math.pi*pa/180))
+# np 為小齒輪齒數
+np = 13
+# gear ratio
+gr = n/np              
+gearConfig = {'cx':-pr, 'cy':0, 'degs':[0, 360]}
+# gr*0.666 rpm
+#pinionConfig = {'cx':pr+dC, 'cy':0, 'degs':[0, -gr*360]}
+# 0.666 rpm
+twnr = tweener(0, 90000, "loop")
+
+cx = canvas.width/2
+cy = canvas.height/2
+#gear.translate(cx, cy)
+# render 繪出靜態正齒輪輪廓
+#cgo.render(gear)
+# 利用 gear 資料複製一份, 命名為 gear1
+gear1 = gear.dup()
+
+from time import time
+from browser.timer import request_animation_frame as raf
+from browser.timer import set_interval
+
+deg = math.pi/180
+
+def draw():
+    cgo.clearCanvas()
+    gear.rotate(2*deg)
+    # 在特定位置, 以特定 scale, 特定 degs 執行 render
+    cgo.render(gear, {'x':cx-pr/2, 'y':cy, 'scl':0.5, 'degs':0})
+    gear1.rotate(-2*deg)
+    cgo.render(gear1, {'x':cx+pr*2*0.5-pr/2, 'y':cy, 'scl':0.5, 'degs':0})
+
+set_interval(draw, 2)
+&lt;/script&gt;</summary><category term="spur"></category></entry><entry><title>week12</title><link href="./week12.html" rel="alternate"></link><published>2017-05-10T11:00:00+08:00</published><updated>2017-05-10T11:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-05-10:./week12.html</id><summary type="html">&lt;p&gt;期末協同實習專案規劃與執行
+
+&lt;p&gt;期末協同實習專案規劃與執行,上課時段準備以oral presentation, text presentation,theoretical presentation 逐步朝期末考週 physical presentation的目標邁進。&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;oral presentation:口語說明進度，規劃細節，分工情形，問題討論。&lt;/p&gt;
+
+&lt;p&gt;text presentation:以gh-pages的blog與Fossil SCM 倉儲wiki紀錄每周專題執行情形。 並利用github與Fossil SCM倉儲管理衍生的檔案。&lt;/p&gt;
+
+&lt;p&gt;theoretical presentation:利用Solvespace，Onshape，V-rep，Brython進行評估模擬。&lt;/p&gt;
+
+&lt;p&gt;physical presentation:在期末考周必須完成實體模型製作，並以video影片展示各階段的準備工作與執行結果。&lt;/p&gt;</summary><category term="w12"></category></entry><entry><title>week11</title><link href="./week11.html" rel="alternate"></link><published>2017-05-03T11:00:00+08:00</published><updated>2017-05-03T11:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-05-03:./week11.html</id><summary type="html">&lt;p&gt;閱讀關於onshape的設計理念，寫出 &lt;a href="https://mde2a2.kmol.info/cdbg2/wcontent"&gt;心得&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;寫出篩選學生數量的py檔&lt;/p&gt;
+
+&lt;p&gt;嘗試利用cango做出正齒輪&lt;/p&gt;
+
+&lt;iframe src="https://player.vimeo.com/video/216657832" width="640" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;a href="https://vimeo.com/216657832"&gt;2017-05-09_20-40-55&lt;/a&gt; from &lt;a href="https://vimeo.com/user45523667"&gt;40423212&lt;/a&gt; on &lt;a href="https://vimeo.com"&gt;Vimeo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;利用 &lt;a href="https://github.com/brython-dev/brython/releases/tag/3.3.1"&gt;Brython 3.3.1&lt;/a&gt; 執行四連桿運動模擬.&lt;/p&gt;
+&lt;p&gt;結合 &lt;a href="https://github.com/brython-dev/brython/releases/tag/3.3.1"&gt;Brython 3.3.1&lt;/a&gt; 與 &lt;a href="./../data/w11/cango/Cango-9v05.js"&gt;Cango-9v05.js&lt;/a&gt; 繪圖, 將 &lt;a href="http://www.arc.id.au/CanvasGraphics.html"&gt;Cango Canvas 繪圖範例&lt;/a&gt;轉為 Brython.&lt;/p&gt;
+&lt;h3&gt;&lt;a href="http://www.arc.id.au"&gt;Cango 程式庫&lt;/a&gt;&lt;/h3&gt;
+&lt;!-- 導入 Brython 標準程式庫 --&gt;
+
+&lt;script src="./../data/Brython-3.3.1/brython.js"&gt;&lt;/script&gt;
+
+&lt;script src="./../data/Brython-3.3.1/brython_stdlib.js"&gt;&lt;/script&gt;
+
+&lt;!-- Cango 程式庫 --&gt;
+
+&lt;script type="text/javascript" src="./../data/w11/cango
+/Cango-9v05-min.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript" src="./../data/w11/cango
+/CangoAxes-2v09.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript" src="./../data/w11/cango
+/CangoAnimation-5v00.js"&gt;&lt;/script&gt;
+
+&lt;!-- 啟動 Brython --&gt;
+
+&lt;script&gt;
+window.onload=function(){
+// 設定 data/py 為共用程式路徑
+brython({debug:1, pythonpath:['./../data/py']});
+}
+&lt;/script&gt;
+
+&lt;!-- 以下實際利用  Brython 繪圖--&gt;
+
+&lt;canvas id="cango_canvas" width="800" height="60"&gt;&lt;/canvas&gt;
+
+&lt;div id="cango_div" width="800" height="20"&gt;&lt;/div&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document as doc
+from browser import window
+import math
+# 利用 window 擷取 Cango 物件, 然後以 new 方法轉為 Brython 物件
+cango = window.Cango.new
+# 利用 browser 中的 document 擷取 id = "cango_div" 的標註
+cango_div = doc["cango_div"]
+def sayHullo(cvsID):
+    # create a graphics context
+    cgo = cango(cvsID) 
+    # use RH Cartesian on full canvas
+    cgo.setGridboxRHC() 
+    # Different X and Y scale
+    cgo.setWorldCoords(-10, -5, 20, 10)
+    cgo.drawText("以 Cango 顯示中文", {
+        'fillColor': "blue",
+        'fontSize': 58,
+        'lorg':5 })
+sayHullo("cango_canvas")
+cango_div &lt;= "以 Brython 顯示中文"
+&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;
+上述 Cango 與 Brython 文字列印程式碼:&lt;/p&gt;
+&lt;pre class="brush: python"&gt;
+&lt;!-- 導入 Brython 標準程式庫 --&gt;
+
+&lt;script src="./../data/Brython-3.3.1/brython.js"&gt;&lt;/script&gt;
+&lt;script src="./../data/Brython-3.3.1/brython_stdlib.js"&gt;&lt;/script&gt;
+
+&lt;!-- Cango 程式庫 --&gt;
+
+&lt;script type="text/javascript" src="./../data/w11/cango
+/Cango-9v05-min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="./../data/w11/cango
+/CangoAxes-2v09.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="./../data/w11/cango
+/CangoAnimation-5v00.js"&gt;&lt;/script&gt;
+
+&lt;!-- 啟動 Brython --&gt;
+
+&lt;script&gt;
+window.onload=function(){
+// 設定 data/py 為共用程式路徑
+brython({debug:1, pythonpath:['./../data/py']});
+}
+&lt;/script&gt;
+
+&lt;!-- 以下實際利用  Brython 繪圖--&gt;
+
+&lt;canvas id="cango_canvas" width="800" height="60"&gt;&lt;/canvas&gt;
+&lt;div id="cango_div" width="800" height="20"&gt;&lt;/div&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document as doc
+from browser import window
+import math
+# 利用 window 擷取 Cango 物件, 然後以 new 方法轉為 Brython 物件
+cango = window.Cango.new
+# 利用 browser 中的 document 擷取 id = "cango_div" 的標註
+cango_div = doc["cango_div"]
+def sayHullo(cvsID):
+    # create a graphics context
+    cgo = cango(cvsID) 
+    # use RH Cartesian on full canvas
+    cgo.setGridboxRHC() 
+    # Different X and Y scale
+    cgo.setWorldCoords(-10, -5, 20, 10)
+    cgo.drawText("以 Cango 顯示中文", {
+        'fillColor': "blue",
+        'fontSize': 58,
+        'lorg':5 })
+sayHullo("cango_canvas")
+cango_div &lt;= "以 Brython 顯示中文"
+&lt;/script&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Cango drawPath 範例:&lt;/p&gt;
+&lt;canvas id="cango_canvas1" width="800" height="600"&gt;&lt;/canvas&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document as doc
+from browser import window
+import math
+# 利用 window 擷取 Cango 物件, 然後以 new 方法轉為 Brython 物件
+cango = window.Cango.new
+
+def plotSine(cvsID):
+    data = []
+    g = cango(cvsID)
+    g.setGridboxRHC(10, 10, 80, 60)
+    g.setWorldCoords(0, -50, 2*math.pi, 100)
+    g.drawAxes(0, 6.5, -50, 50, {
+    'xOrigin':0, 'yOrigin':0,
+    'fontSize':10,
+    'strokeColor':'gray'})
+    for i in range(int(2*math.pi/0.03)):
+        #[0, 0.03, 0.06 ... 3.14159]
+        i = i * 0.03
+        # 特別注意在 Javascript 採用 data.push(i, 50*math.sin(i)), 但是 Python 必須分為兩段 append
+        data.append(i)
+        data.append(50*math.sin(i))
+    g.drawPath(data, {'strokeColor':'red'})
+plotSine("cango_canvas1")
+&lt;/script&gt;
+
+&lt;p&gt;以上繪圖程式碼:&lt;/p&gt;
+&lt;pre class="brush: python"&gt;
+&lt;canvas id="cango_canvas1" width="800" height="600"&gt;&lt;/canvas&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document as doc
+from browser import window
+import math
+# 利用 window 擷取 Cango 物件, 然後以 new 方法轉為 Brython 物件
+cango = window.Cango.new
+
+def plotSine(cvsID):
+    data = []
+    g = cango(cvsID)
+    g.setGridboxRHC(10, 10, 80, 60)
+    g.setWorldCoords(0, -50, 2*math.pi, 100)
+    g.drawAxes(0, 6.5, -50, 50, {
+    'xOrigin':0, 'yOrigin':0,
+    'fontSize':10,
+    'strokeColor':'gray'})
+    for i in range(int(2*math.pi/0.03)):
+        #[0, 0.03, 0.06 ... 3.14159]
+        i = i * 0.03
+        # 特別注意在 Javascript 採用 data.push(i, 50*math.sin(i)), 但是 Python 必須分為兩段 append
+        data.append(i)
+        data.append(50*math.sin(i))
+    g.drawPath(data, {'strokeColor':'red'})
+plotSine("cango_canvas1")
+&lt;/script&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;重用 Cango 繪圖物件:&lt;/p&gt;
+&lt;canvas id="cango_canvas2" width="800" height="800"&gt;&lt;/canvas&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document as doc
+from browser import window
+import math
+# 利用 window 擷取 Cango 物件, 然後以 new 方法轉為 Brython 物件
+cango = window.Cango.new
+shape = window.Shape.new
+shapedefs = window.shapeDefs
+
+def drawSpiral(cvsID):
+    g = cango(cvsID)
+    chamber = ['M',289.16,447.14,
+                 'C',233.33,399.03, 267.47,290.34, 364.53,265.28,
+                     408.88,269.91, 448.14,282.58, 483.22,303.79,
+                     391.79,287.12, 292.99,369.50, 331.90,451.11,
+                     318.79,447.43, 302.35,446.61, 289.16,447.14, 'z']
+    cobj = shape(chamber, {
+        'fillColor':"lightyellow",
+        'strokeColor':"tan",
+        'lineWidthWC':4,
+        'border':True })
+    cobj.translate(-287, -536)
+    g.setGridboxSVG()
+    g.setWorldCoords(-250, -320, 500)
+    # draw the spiral center dot
+    g.drawShape(shapedefs.circle(8), {'fillColor':"tan"})
+    # draw the 50 spiral segments
+    scale = 1
+    for i in range(50):
+        scale = scale/1.08
+        g.render(cobj, {'scl':scale, 'degs':i*24.5})
+
+drawSpiral("cango_canvas2")
+&lt;/script&gt;
+
+&lt;p&gt;上述繪圖程式碼:&lt;/p&gt;
+&lt;pre class="brush: python"&gt;
+&lt;canvas id="cango_canvas2" width="800" height="800"&gt;&lt;/canvas&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document as doc
+from browser import window
+import math
+# 利用 window 擷取 Cango 物件, 然後以 new 方法轉為 Brython 物件
+cango = window.Cango.new
+shape = window.Shape.new
+shapedefs = window.shapeDefs
+
+def drawSpiral(cvsID):
+    g = cango(cvsID)
+    chamber = ['M',289.16,447.14,
+                 'C',233.33,399.03, 267.47,290.34, 364.53,265.28,
+                     408.88,269.91, 448.14,282.58, 483.22,303.79,
+                     391.79,287.12, 292.99,369.50, 331.90,451.11,
+                     318.79,447.43, 302.35,446.61, 289.16,447.14, 'z']
+    cobj = shape(chamber, {
+        'fillColor':"lightyellow",
+        'strokeColor':"tan",
+        'lineWidthWC':4,
+        'border':True })
+    cobj.translate(-287, -536)
+    g.setGridboxSVG()
+    g.setWorldCoords(-250, -320, 500)
+    # draw the spiral center dot
+    g.drawShape(shapedefs.circle(8), {'fillColor':"tan"})
+    # draw the 50 spiral segments
+    scale = 1
+    for i in range(50):
+        scale = scale/1.08
+        g.render(cobj, {'scl':scale, 'degs':i*24.5})
+
+drawSpiral("cango_canvas2")
+&lt;/script&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;目前正透過 &lt;a href="https://github.com/mdecourse/kmol2018"&gt;https://github.com/mdecourse/kmol2018&lt;/a&gt; 測試 Windows 64 位元可攜 Python3.6.1 與 Brython 3.3.1 的應用, 已經發現 Pelican DISPLAY_PAGES_ON_MENU 無法運作, 且 Brython 3.3.1 在 Windows 環境中無法正確擷取字串值.&lt;/p&gt;
+&lt;h3&gt;&lt;a href="http://snapsvg.io/"&gt;Snap 程式庫&lt;/a&gt;&lt;/h3&gt;
+&lt;script type="text/javascript" src="./../data/w11/snap/snap.svg-min.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;svg id="svgout" width="800" height="500" viewBox="0 0 800 500"&gt;&lt;/svg&gt;&lt;/p&gt;
+&lt;script type="text/python"&gt;
+from browser import alert
+from browser import window, document
+# 將 Snap 轉為 Brython 物件
+snap = window.Snap.new
+# 使用 id 為 "svgout" 的 svg 標註進行繪圖
+s = snap("#svgout")
+
+offsetY = 50
+
+# 是否標示出繪圖範圍
+#borderRect = s.rect(0,0,800,640,10,10).attr({ 'stroke': "silver", 'fill': "silver", 'strokeWidth': "3" })
+
+g = s.group().transform('t250,120')
+r0 = s.rect(150,150,100,100,20,20).attr({ 'fill': "orange", 'opacity': "0.8", 'stroke': "black", 'strokeWidth': "2" })
+c0 = s.circle(225,225,10).attr({ 'fill': "silver", 'stroke': "black", 'strokeWidth': "4"  }).attr({ 'id': 'c0' })
+g0 = s.group( r0,c0 ).attr({ 'id': 'g0' })
+#g0.animate({ 'transform' : 't250,120r360,225,225' },4000)
+g0.appendTo( g )
+g0.animate({ 'transform' : 'r360,225,225' },4000)
+# 讓 g0 可以拖動
+g0.drag()
+
+r1 = s.rect(100,100,100,100,20,20).attr({ 'fill': "red", 'opacity': "0.8", 'stroke': "black", 'strokeWidth': "2" })
+c1 = s.circle(175,175,10).attr({ 'fill': "silver", 'stroke': "black" , 'strokeWidth': "4"}).attr({ 'id': 'c1' })
+g1 = s.group( r1,c1 ).attr({ 'id': 'g1' })
+g1.appendTo( g0 ).attr({ 'id': 'g1' })
+g1.animate({ 'transform' : 'r360,175,175' },4000)
+
+r2 = s.rect(50,50,100,100,20,20).attr({ 'fill': "blue", 'opacity': "0.8", 'stroke': "black", 'strokeWidth': "2" })
+c2 = s.circle(125,125,10).attr({ 'fill': "silver", 'stroke': "black", 'strokeWidth': "4" }).attr({ 'id': 'c2' })
+g2 = s.group(r2,c2).attr({ 'id': 'g2' })
+
+g2.appendTo( g1 );
+g2.animate( { 'transform' : 'r360,125,125' },4000);
+
+r3 = s.rect(0,0,100,100,20,20).attr({ 'fill': "yellow", 'opacity': "0.8", 'stroke': "black", 'strokeWidth': "2" })
+c3 = s.circle(75,75,10).attr({ 'fill': "silver", 'stroke': "black", 'strokeWidth': "4" }).attr({ 'id': 'c3' })
+g3 = s.group(r3,c3).attr({ 'id': 'g3' })
+
+g3.appendTo( g2 )
+g3.animate( { 'transform' : 'r360,75,75' },4000)
+
+r4 = s.rect(-50,-50,100,100,20,20).attr({ 'fill': "green", 'opacity': "0.8", 'stroke': "black", 'strokeWidth': "2" })
+c4 = s.circle(25,25,10).attr({ 'fill': "silver", 'stroke': "black", 'strokeWidth': "4" }).attr({ 'id': 'c4' })
+g4 = s.group(r4,c4).attr({ 'id': 'g4' });
+g4.appendTo( g3 )
+g4.animate( { 'transform' : 'r360,25,25' },4000)
+&lt;/script&gt;
+
+&lt;p&gt;上述 Snap 繪圖程式碼:&lt;/p&gt;
+&lt;pre class="brush: python"&gt;
+&lt;script type="text/javascript" src="./../data/w11/snap/snap.svg-min.js"&gt;&lt;/script&gt;
+
+&lt;svg id="svgout" width="800" height="500" viewBox="0 0 800 500"&gt;&lt;/svg&gt;
+
+&lt;script type="text/python"&gt;
+from browser import alert
+from browser import window, document
+# 將 Snap 轉為 Brython 物件
+snap = window.Snap.new
+# 使用 id 為 "svgout" 的 svg 標註進行繪圖
+s = snap("#svgout")
+
+offsetY = 50
+
+# 是否標示出繪圖範圍
+#borderRect = s.rect(0,0,800,640,10,10).attr({ 'stroke': "silver", 'fill': "silver", 'strokeWidth': "3" })
+
+g = s.group().transform('t250,120')
+r0 = s.rect(150,150,100,100,20,20).attr({ 'fill': "orange", 'opacity': "0.8", 'stroke': "black", 'strokeWidth': "2" })
+c0 = s.circle(225,225,10).attr({ 'fill': "silver", 'stroke': "black", 'strokeWidth': "4"  }).attr({ 'id': 'c0' })
+g0 = s.group( r0,c0 ).attr({ 'id': 'g0' })
+#g0.animate({ 'transform' : 't250,120r360,225,225' },4000)
+g0.appendTo( g )
+g0.animate({ 'transform' : 'r360,225,225' },4000)
+# 讓 g0 可以拖動
+g0.drag()
+
+r1 = s.rect(100,100,100,100,20,20).attr({ 'fill': "red", 'opacity': "0.8", 'stroke': "black", 'strokeWidth': "2" })
+c1 = s.circle(175,175,10).attr({ 'fill': "silver", 'stroke': "black" , 'strokeWidth': "4"}).attr({ 'id': 'c1' })
+g1 = s.group( r1,c1 ).attr({ 'id': 'g1' })
+g1.appendTo( g0 ).attr({ 'id': 'g1' })
+g1.animate({ 'transform' : 'r360,175,175' },4000)
+
+r2 = s.rect(50,50,100,100,20,20).attr({ 'fill': "blue", 'opacity': "0.8", 'stroke': "black", 'strokeWidth': "2" })
+c2 = s.circle(125,125,10).attr({ 'fill': "silver", 'stroke': "black", 'strokeWidth': "4" }).attr({ 'id': 'c2' })
+g2 = s.group(r2,c2).attr({ 'id': 'g2' })
+
+g2.appendTo( g1 );
+g2.animate( { 'transform' : 'r360,125,125' },4000);
+
+r3 = s.rect(0,0,100,100,20,20).attr({ 'fill': "yellow", 'opacity': "0.8", 'stroke': "black", 'strokeWidth': "2" })
+c3 = s.circle(75,75,10).attr({ 'fill': "silver", 'stroke': "black", 'strokeWidth': "4" }).attr({ 'id': 'c3' })
+g3 = s.group(r3,c3).attr({ 'id': 'g3' })
+
+g3.appendTo( g2 )
+g3.animate( { 'transform' : 'r360,75,75' },4000)
+
+r4 = s.rect(-50,-50,100,100,20,20).attr({ 'fill': "green", 'opacity': "0.8", 'stroke': "black", 'strokeWidth': "2" })
+c4 = s.circle(25,25,10).attr({ 'fill': "silver", 'stroke': "black", 'strokeWidth': "4" }).attr({ 'id': 'c4' })
+g4 = s.group(r4,c4).attr({ 'id': 'g4' });
+g4.appendTo( g3 )
+g4.animate( { 'transform' : 'r360,25,25' },4000)
+&lt;/script&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;&lt;svg id="svgout1" width="800" height="500" viewBox="0 0 800 500"&gt;&lt;/svg&gt;&lt;/p&gt;
+&lt;script type="text/python"&gt;
+from browser import window
+from browser import document
+# 將 Snap 轉為 Brython 物件
+snap = window.Snap.new
+
+s = snap("#svgout1")
+# 建立物件時, 同時設定 id 名稱
+r = s.rect(10,10,100,100).attr({'id': 'rect'})
+c = s.circle(100,100,50).attr({'id': 'circle'})
+r.attr('fill', 'red')
+c.attr({ 'fill': 'blue', 'stroke': 'black', 'strokeWidth': 10 })
+r.attr({ 'stroke': '#123456', 'strokeWidth': 20 })
+s.text(180,100, '點按一下圖形').attr({'fill' : 'blue',  'stroke': 'blue', 'stroke-width': 0.2 })
+
+g = s.group().attr({'id': 'tux'})
+
+def hoverover(ev):
+    g.animate({'transform': 's1.2r45,t180,20'}, 1000, window.mina.bounce)
+
+def hoverout(ev):
+    g.animate({'transform': 's1r0,t180,20'}, 1000, window.mina.bounce) 
+
+# callback 函式
+def onSVGLoaded(data):
+    #s.append(data)
+    g.append(data)
+    #g.hover(hoverover, hoverout )
+    g.text(300,100, '將滑鼠指向企鵝')
+
+# 利用 window.Snap.load 載入 svg 檔案
+tux = window.Snap.load("https://chiamingyen.github.io/kmolab_data/files/Dreaming_tux.svg", onSVGLoaded)
+g.transform('t180,20')
+
+# 與視窗事件對應的函式
+def rtoyellow(ev):
+    r.attr('fill', 'yellow')
+
+def ctogreen(ev):
+    c.attr('fill', 'green')
+
+# 根據物件 id 綁定滑鼠事件執行對應函式
+document['rect'].bind('click', rtoyellow)
+document['circle'].bind('click', ctogreen)
+document['tux'].bind('mouseover', hoverover)
+document['tux'].bind('mouseleave', hoverout)
+&lt;/script&gt;
+
+&lt;p&gt;上述繪圖程式碼:&lt;/p&gt;
+&lt;pre class="brush: python"&gt;
+&lt;svg id="svgout1" width="800" height="500" viewBox="0 0 800 500"&gt;&lt;/svg&gt;
+
+&lt;script type="text/python"&gt;
+from browser import window
+from browser import document
+# 將 Snap 轉為 Brython 物件
+snap = window.Snap.new
+
+s = snap("#svgout1")
+# 建立物件時, 同時設定 id 名稱
+r = s.rect(10,10,100,100).attr({'id': 'rect'})
+c = s.circle(100,100,50).attr({'id': 'circle'})
+r.attr('fill', 'red')
+c.attr({ 'fill': 'blue', 'stroke': 'black', 'strokeWidth': 10 })
+r.attr({ 'stroke': '#123456', 'strokeWidth': 20 })
+s.text(180,100, '點按一下圖形').attr({'fill' : 'blue',  'stroke': 'blue', 'stroke-width': 0.2 })
+
+g = s.group().attr({'id': 'tux'})
+
+def hoverover(ev):
+    g.animate({'transform': 's1.2r45,t180,20'}, 1000, window.mina.bounce)
+
+def hoverout(ev):
+    g.animate({'transform': 's1r0,t180,20'}, 1000, window.mina.bounce) 
+
+# callback 函式
+def onSVGLoaded(data):
+    #s.append(data)
+    g.append(data)
+    #g.hover(hoverover, hoverout )
+    g.text(300,100, '將滑鼠指向企鵝')
+
+# 利用 window.Snap.load 載入 svg 檔案
+tux = window.Snap.load("https://chiamingyen.github.io/kmolab_data/files/Dreaming_tux.svg", onSVGLoaded)
+g.transform('t180,20')
+
+# 與視窗事件對應的函式
+def rtoyellow(ev):
+    r.attr('fill', 'yellow')
+
+def ctogreen(ev):
+    c.attr('fill', 'green')
+
+# 根據物件 id 綁定滑鼠事件執行對應函式
+document['rect'].bind('click', rtoyellow)
+document['circle'].bind('click', ctogreen)
+document['tux'].bind('mouseover', hoverover)
+document['tux'].bind('mouseleave', hoverout)
+&lt;/script&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Other SVG library: &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/duopixel/Method-Draw"&gt;https://github.com/duopixel/Method-Draw&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/mozman/svgwrite"&gt;https://github.com/mozman/svgwrite&lt;/a&gt;&lt;/p&gt;</summary><category term="w11"></category></entry><entry><title>Week8</title><link href="./week8.html" rel="alternate"></link><published>2017-04-19T11:00:00+08:00</published><updated>2017-04-19T11:00:00+08:00</updated><author><name>40423224</name></author><id>tag:,2017-04-19:./week8.html</id><summary type="html">&lt;p&gt;零件视频：https://youtu.be/dbJb6Fl12oo
 https://youtu.be/iQBfNWGhI5w&lt;/p&gt;</summary><category term="w8"></category></entry><entry><title>test</title><link href="./test.html" rel="alternate"></link><published>2017-04-18T11:00:00+08:00</published><updated>2017-04-18T11:00:00+08:00</updated><author><name>40423224</name></author><id>tag:,2017-04-18:./test.html</id><summary type="html">&lt;p&gt;&lt;link href="./../data/madeleine/src/css/Madeleine.css" rel="stylesheet"&gt;
 &lt;script src="./../data/madeleine/src/lib/stats.js"&gt;&lt;/script&gt;
 &lt;script src="./../data/madeleine/src/lib/detector.js"&gt;&lt;/script&gt;

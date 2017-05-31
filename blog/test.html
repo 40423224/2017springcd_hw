@@ -2,8 +2,7 @@
 <html lang="en"
 >
 <head>
-    <title>Search - 2017Spring 協同產品設計實習 (虎尾科大MDE)
-</title>
+    <title>test - 2017Spring 協同產品設計實習 (虎尾科大MDE)</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -11,15 +10,21 @@
 
 
 
+<link rel="canonical" href="./test.html">
 
-        <meta name="author" content="KMOL" />
+        <meta name="author" content="40423224" />
+        <meta name="keywords" content="w8" />
+        <meta name="description" content="window.onload = function(){ var madeleine = new Madeleine({ target: &#39;target&#39;, // target div id data: &#39;./../data/Assembly1.stl&#39;, // data path path: &#39;./../data/madeleine/src/&#39; // path to source directory from current html file }); }; window.onload=function(){ brython(1); } from browser import document as doc from browser import html import math # 準備繪圖畫布 canvas = doc ..." />
 
-    <!-- Open Graph tags -->
         <meta property="og:site_name" content="2017Spring 協同產品設計實習 (虎尾科大MDE)" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="2017Spring 協同產品設計實習 (虎尾科大MDE)"/>
-        <meta property="og:url" content="."/>
-        <meta property="og:description" content="2017Spring 協同產品設計實習 (虎尾科大MDE)"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="test"/>
+        <meta property="og:url" content="./test.html"/>
+        <meta property="og:description" content="window.onload = function(){ var madeleine = new Madeleine({ target: &#39;target&#39;, // target div id data: &#39;./../data/Assembly1.stl&#39;, // data path path: &#39;./../data/madeleine/src/&#39; // path to source directory from current html file }); }; window.onload=function(){ brython(1); } from browser import document as doc from browser import html import math # 準備繪圖畫布 canvas = doc ..."/>
+        <meta property="article:published_time" content="2017-04-18" />
+            <meta property="article:section" content="40423224" />
+            <meta property="article:tag" content="w8" />
+            <meta property="article:author" content="40423224" />
 
 
     <!-- Bootstrap -->
@@ -100,7 +105,7 @@
                          <li><a href="./pages/about/">
                              About
                           </a></li>
-                        <li >
+                        <li class="active">
                             <a href="./category/40423224.html">40423224</a>
                         </li>
             </ul>
@@ -122,7 +127,129 @@
     <div class="row">
         <div class="col-sm-9">
 
-<div id="tipue_search_content"></div>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./test.html"
+                       rel="bookmark"
+                       title="Permalink to test">
+                        test
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-04-18T11:00:00+08:00"> Tue 18 April 2017</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="./author/40423224.html"><i class="fa fa-user"></i> 40423224</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/w8.html">w8</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><link href="./../data/madeleine/src/css/Madeleine.css" rel="stylesheet">
+<script src="./../data/madeleine/src/lib/stats.js"></script>
+<script src="./../data/madeleine/src/lib/detector.js"></script>
+<script src="./../data/madeleine/src/lib/three.min.js"></script>
+<script src="./../data/madeleine/src/Madeleine.js"></script></p>
+<div id="target" class="madeleine"></div>
+
+<script>
+window.onload = function(){
+    var madeleine = new Madeleine({
+      target: 'target', // target div id
+      data: './../data/Assembly1.stl', // data path
+      path: './../data/madeleine/src/' // path to source directory from current html file
+    });
+}; 
+</script>
+
+<!-- 導入 Brython 標準程式庫 -->
+
+<script type="text/javascript" src="https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js">
+</script>
+
+<!-- 啟動 Brython -->
+
+<script>
+window.onload=function(){
+brython(1);
+}
+</script>
+
+<!-- 以下實際利用  Brython 畫四連桿 trace point 路徑-->
+
+<canvas id="fourbar" width="800" height="600"></canvas>
+
+<div id="container1"></div>
+
+<script type="text/python3">
+from browser import document as doc
+from browser import html
+import math
+# 準備繪圖畫布
+canvas = doc["fourbar"]
+container1 = doc['container1']
+ctx = canvas.getContext("2d")
+
+fourbar_data = open("./../data/midterm1.csv").read()
+fourbar_list = fourbar_data.splitlines()
+fourbar2_data = open("./../data/midterm2.csv").read()
+fourbar2_list = fourbar2_data.splitlines()
+#container1 <= fourbar_list[0]
+# 以下可以利用 ctx 物件進行畫圖
+# 先畫一條直線
+ctx.beginPath()
+# 設定線的寬度為 1 個單位
+ctx.lineWidth = 1
+# 利用 transform 將 y 座標反轉, 且 offset canvas.height
+# (X scale, X skew, Y skew, Y scale, X offset, Y offset)
+# 配合圖形位置進行座標轉換
+ctx.transform(1, 0, 0, -1, canvas.width/2+250, canvas.height/2+100)
+# 畫出 x 與 y 座標線
+# 各座標值放大 8 倍
+ratio = 4
+ctx.moveTo(0, 0)
+ctx.lineTo(-30*ratio, 0)
+start_point = fourbar_list[0].split(",")
+ctx.moveTo(float(start_point[0])*ratio, float(start_point[1])*ratio)
+count = 0
+for data in fourbar_list[1:]:
+    point = data.split(",")
+    #count = count + 1
+    #container1 <= str(count) + ":" + point[0] + "," + point[1]
+    #container1 <= html.BR()
+    ctx.lineTo(float(point[0])*ratio, float(point[1])*ratio)
+
+    ctx.strokeStyle = "red"
+
+for data in fourbar2_list[1:]:
+    point = data.split(",")
+    #count = count + 1
+    #container1 <= str(count) + ":" + point[0] + "," + point[1]
+    #container1 <= html.BR()
+    ctx.lineTo(float(point[0])*ratio, float(point[1])*ratio)
+# 設定顏色為藍色, 也可以使用 "rgb(0, 0, 255)" 字串設定顏色值
+ctx.strokeStyle = "blue"
+# 實際執行畫線
+ctx.stroke()
+ctx.closePath()
+
+</script>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
@@ -231,20 +358,5 @@
 <script src="./theme/js/respond.min.js"></script>
 
 
-    <link href="./theme/tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script type="text/javascript" src="./theme/tipuesearch/tipuesearch_set.js"></script>
-    <script type="text/javascript" src="./theme/tipuesearch/tipuesearch.min.js"></script>
-    <!-- 導入 local Tipue search 所需要的 tipuesearch_content.js -->
-    <script type="text/javascript" src="./tipuesearch_content.js"></script>
-    <script>
-    $(document).ready(function() {
-      $('#tipue_search_input').tipuesearch({
-        'mode' : 'static',
-        'show': 10,
-        'minimumLength': 2,
-        'newWindow': false
-      });
-    });
-    </script>
 </body>
 </html>
