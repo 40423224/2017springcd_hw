@@ -54,6 +54,18 @@
 <v t="leo.20170419092846.1"><vh>封面投影片</vh>
 <v t="leo.20170419092846.2"><vh>封面投影片內容</vh></v>
 </v>
+<v t="leo.20170621084832.1"><vh>封面投影片</vh>
+<v t="leo.20170621084832.2"><vh>封面投影片內容</vh></v>
+</v>
+<v t="leo.20170621085202.1"><vh>封面投影片</vh>
+<v t="leo.20170621085202.2"><vh>封面投影片內容</vh></v>
+</v>
+<v t="leo.20170621085445.1"><vh>封面投影片</vh>
+<v t="leo.20170621085445.2"><vh>封面投影片內容</vh></v>
+</v>
+<v t="leo.20170621085525.1"><vh>封面投影片</vh>
+<v t="leo.20170621085525.2"><vh>封面投影片內容</vh></v>
+</v>
 </v>
 </v>
 </v>
@@ -247,6 +259,66 @@ Created by [40423224](https://40423224.github.io/2017springcd_hw/blog/)
 <t tx="leo.20170419092846.2">#week7
 
 * 往fossil傳遞檔案，以及onshape參數繪圖 
+
+</t>
+<t tx="leo.20170621084832.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20170621084832.2">#week11
+
+* 閱讀關於onshape的設計理念,寫出篩選學生數量的py檔,嘗試利用cango做出正齒輪.
+
+</t>
+<t tx="leo.20170621085202.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20170621085202.2">#week12
+
+* 期末協同實習專案規劃與執行,上課時段準備以oral presentation, text presentation,theoretical presentation 逐步朝期末考週 physical presentation的目標邁進。
+*oral presentation:口語說明進度，規劃細節，分工情形，問題討論。
+*text presentation:以gh-pages的blog與Fossil SCM 倉儲wiki紀錄每周專題執行情形。 並利用github與Fossil SCM倉儲管理衍生的檔案。
+*theoretical presentation:利用Solvespace，Onshape，V-rep，Brython進行評估模擬。
+*physical presentation:在期末考周必須完成實體模型製作，並以video影片展示各階段的準備工作與執行結果。
+
+</t>
+<t tx="leo.20170621085445.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20170621085445.2">#week15
+
+* 組員協同練習.
+
+</t>
+<t tx="leo.20170621085525.1">&lt;section data-markdown&gt;
+    &lt;script type="text/template"&gt;
+@others
+    &lt;/script&gt;
+&lt;/section&gt;
+
+
+						
+</t>
+<t tx="leo.20170621085525.2">#week17
+
+* 期末協同實習
 
 </t>
 <t tx="yen.20170108171605.1"></t>
